@@ -1,14 +1,27 @@
 package com.example.binh.tododatabindingp1.util;
 
-import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
-import com.example.binh.tododatabindingp1.tasks.TasksFragment;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ActivityUtils {
-    public static void addFragmentToActivity(FragmentManager fragmentManager,
-                                             TasksFragment tasksFragment,
-                                             @IdRes int contentFrame) {
 
+    /**
+     * The {@code fragment} is added to the container view with id {@code frameId}. The operation is
+     * performed by the {@code fragmentManager}.
+     *
+     */
+    public static void addFragmentToActivity (@NonNull FragmentManager fragmentManager,
+                                              @NonNull Fragment fragment, int frameId) {
+        checkNotNull(fragmentManager);
+        checkNotNull(fragment);
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.add(frameId, fragment);
+        transaction.commit();
     }
+
 }
